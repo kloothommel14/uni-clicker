@@ -29,7 +29,13 @@ int click(int ms){
 }
 
 int main() {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    WORD saved_attributes;
     int msdelay = 200;
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+    saved_attributes = consoleInfo.wAttributes;
+    SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
     printf("          _       _________     _______  _       _________ _______  _        _______  _______ \n"
            "|\\     /|( (    /|\\__   __/    (  ____ \\( \\      \\__   __/(  ____ \\| \\    /\\(  ____ \\(  ____ )\n"
            "| )   ( ||  \\  ( |   ) (       | (    \\/| (         ) (   | (    \\/|  \\  / /| (    \\/| (    )|\n"
@@ -39,8 +45,10 @@ int main() {
            "| (___) || )  \\  |___) (___    | (____/\\| (____/\\___) (___| (____/\\|  /  \\ \\| (____/\\| ) \\ \\__\n"
            "(_______)|/    )_)\\_______/    (_______/(_______/\\_______/(_______/|_/    \\/(_______/|/   \\__/\n");
     printf("\n");
-    printf("DO NOT CLICK IN THE CONSOLE< YOU CAN PUT IN INPUT WITHOUT CLICKING.");
+    SetConsoleTextAttribute(hConsole, FOREGROUND_RED);
+    printf("DO NOT CLICK IN THE CONSOLE, YOU CAN PUT IN INPUT WITHOUT CLICKING.");
     printf("\n");
+    SetConsoleTextAttribute(hConsole, saved_attributes);
     printf("enter CPS please.\n");
     scanf ("%d",&msdelay);
     printf("cps: %d", msdelay);
