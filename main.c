@@ -11,16 +11,19 @@ int click(int ms){
         ms = 10;
     }
     while (1==1){
-        if(GetAsyncKeyState(VK_LBUTTON) < 0){
-            click = TRUE;
-        }else if (GetAsyncKeyState(VK_MBUTTON) < 0){
+        if(GetAsyncKeyState(VK_LBUTTON) > 0){
+            printf("false");
             click = FALSE;
+        }
+        if(GetAsyncKeyState(VK_LBUTTON) < 0){
+            printf("true");
+            click = TRUE;
         }
         if(click == TRUE){
             printf("pressed");
+            mouse_event(MOUSEEVENTF_LEFTUP,0,0,0,0);
             mouse_event(MOUSEEVENTF_LEFTDOWN,0,0,0,0);
             Sleep(1000/ms);
-            mouse_event(MOUSEEVENTF_LEFTUP,0,0,0,0);
         }
     }
 }
