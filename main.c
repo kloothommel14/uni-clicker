@@ -34,10 +34,9 @@ int clickRand(){
     int msMax = 200;
     int msMin = 200;
     printf("enter max delay in milliseconds");
-
-    scanf("%d", msMax);
+    scanf("%d", &msMax);
     printf("enter min delay in milliseconds");
-    scanf("%d", msMin);
+    scanf("%d", &msMin);
 
     boolean click = FALSE;
 
