@@ -5,7 +5,7 @@
 int random(int min, int max){
     return min + rand() / (RAND_MAX / (max - min + 1) + 1);
 }
-
+int mcMode = 0;
 int click(){
     int ms = 200;
     printf("enter cps please");
@@ -24,18 +24,19 @@ int click(){
         }
         if(click == TRUE){
             mouse_event(MOUSEEVENTF_LEFTUP,0,0,0,0);
-            Sleep(random(10,30));
+            Sleep(10);
             mouse_event(MOUSEEVENTF_LEFTDOWN,0,0,0,0);
-            Sleep(1000/ms);
+
+            Sleep(9990/ms);
         }
     }
 }
 int clickRand(){
     int msMax = 200;
     int msMin = 200;
-    printf("enter max delay in milliseconds");
+    printf("enter max CPS");
     scanf("%d", &msMax);
-    printf("enter min delay in milliseconds");
+    printf("enter min CPS");
     scanf("%d", &msMin);
 
     boolean click = FALSE;
@@ -50,9 +51,9 @@ int clickRand(){
         }
         if(click == TRUE){
             mouse_event(MOUSEEVENTF_LEFTUP,0,0,0,0);
-            Sleep(random(10,30));
+            Sleep(10);
             mouse_event(MOUSEEVENTF_LEFTDOWN,0,0,0,0);
-            Sleep(random(msMin,msMax));
+            Sleep(random(msMin*10,msMax*10));
         }
     }
 }
